@@ -56,10 +56,10 @@ public:
 
 class t_proxy : t_entry
 {
-protected:
 	t_entry* v_session = v_previous;
 	t_root v_object = t_object::f_of(this);
 
+protected:
 	t_proxy() : t_entry(t_session::f_instance())
 	{
 	}
@@ -68,7 +68,7 @@ public:
 	virtual void f_dispose();
 	bool f_valid()
 	{
-		return v_session == t_session::f_instance();
+		return v_session == t_session::f_instance() && v_object;
 	}
 };
 

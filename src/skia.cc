@@ -20,7 +20,6 @@ void t_entry::f_dispose()
 void t_proxy::f_dispose()
 {
 	t_entry::f_dispose();
-	v_session = nullptr;
 	v_object = nullptr;
 }
 
