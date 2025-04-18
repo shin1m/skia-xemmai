@@ -8,11 +8,11 @@ using namespace xemmaix::skia;
 void t_type_of<t_path>::f_define(t_library* a_library)
 {
 	t_define{a_library}
-		(L"move_to"sv, t_member<SkPath&(SkPath::*)(SkScalar, SkScalar), &SkPath::moveTo>())
-		(L"line_to"sv, t_member<SkPath&(SkPath::*)(SkScalar, SkScalar), &SkPath::lineTo>())
-		(L"quad_to"sv, t_member<SkPath&(SkPath::*)(SkScalar, SkScalar, SkScalar, SkScalar), &SkPath::quadTo>())
-		(L"cubic_to"sv, t_member<SkPath&(SkPath::*)(SkScalar, SkScalar, SkScalar, SkScalar, SkScalar, SkScalar), &SkPath::cubicTo>())
-		(L"close"sv, t_member<SkPath&(SkPath::*)(), &SkPath::close>())
+	(L"move_to"sv, t_member<SkPath&(SkPath::*)(SkScalar, SkScalar), &SkPath::moveTo>())
+	(L"line_to"sv, t_member<SkPath&(SkPath::*)(SkScalar, SkScalar), &SkPath::lineTo>())
+	(L"quad_to"sv, t_member<SkPath&(SkPath::*)(SkScalar, SkScalar, SkScalar, SkScalar), &SkPath::quadTo>())
+	(L"cubic_to"sv, t_member<SkPath&(SkPath::*)(SkScalar, SkScalar, SkScalar, SkScalar, SkScalar, SkScalar), &SkPath::cubicTo>())
+	(L"close"sv, t_member<SkPath&(SkPath::*)(), &SkPath::close>())
 	.f_derive<t_path, t_proxy>();
 }
 

@@ -118,8 +118,6 @@ class t_library : public xemmai::t_library
 	t_slot_of<t_type> v_type_rect;
 	t_slot_of<t_type> v_type_typeface;
 
-	static void f_main(const t_pvalue& a_callable);
-
 public:
 	using xemmai::t_library::t_library;
 	XEMMAI__LIBRARY__MEMBERS

@@ -23,12 +23,6 @@ void t_proxy::f_dispose()
 	v_object = nullptr;
 }
 
-void t_library::f_main(const t_pvalue& a_callable)
-{
-	t_session session;
-	a_callable();
-}
-
 void t_library::f_scan(t_scan a_scan)
 {
 	a_scan(v_type_proxy);
@@ -67,22 +61,26 @@ std::vector<std::pair<t_root, t_rvalue>> t_library::f_define()
 	t_type_of<SkRect>::f_define(this);
 	t_type_of<t_typeface>::f_define(this);
 	return t_define(this)
-		(L"Proxy"sv, static_cast<t_object*>(v_type_proxy))
-		(L"Surface"sv, static_cast<t_object*>(v_type_surface))
-		(L"FilterMode"sv, t_type_of<SkFilterMode>::f_define(this))
-		(L"MipmapMode"sv, t_type_of<SkMipmapMode>::f_define(this))
-		(L"SamplingOptions"sv, static_cast<t_object*>(v_type_sampling_options))
-		(L"Canvas"sv, static_cast<t_object*>(v_type_canvas))
-		(L"Font"sv, static_cast<t_object*>(v_type_font))
-		(L"FontManager"sv, static_cast<t_object*>(v_type_font_manager))
-		(L"FontMetrics"sv, static_cast<t_object*>(v_type_font_metrics))
-		(L"FontStyle"sv, static_cast<t_object*>(v_type_font_style))
-		(L"Image"sv, static_cast<t_object*>(v_type_image))
-		(L"Paint"sv, static_cast<t_object*>(v_type_paint))
-		(L"Path"sv, static_cast<t_object*>(v_type_path))
-		(L"Rect"sv, static_cast<t_object*>(v_type_rect))
-		(L"Typeface"sv, static_cast<t_object*>(v_type_typeface))
-		(L"main"sv, t_static<void(*)(const t_pvalue&), f_main>())
+	(L"Proxy"sv, static_cast<t_object*>(v_type_proxy))
+	(L"Surface"sv, static_cast<t_object*>(v_type_surface))
+	(L"FilterMode"sv, t_type_of<SkFilterMode>::f_define(this))
+	(L"MipmapMode"sv, t_type_of<SkMipmapMode>::f_define(this))
+	(L"SamplingOptions"sv, static_cast<t_object*>(v_type_sampling_options))
+	(L"Canvas"sv, static_cast<t_object*>(v_type_canvas))
+	(L"Font"sv, static_cast<t_object*>(v_type_font))
+	(L"FontManager"sv, static_cast<t_object*>(v_type_font_manager))
+	(L"FontMetrics"sv, static_cast<t_object*>(v_type_font_metrics))
+	(L"FontStyle"sv, static_cast<t_object*>(v_type_font_style))
+	(L"Image"sv, static_cast<t_object*>(v_type_image))
+	(L"Paint"sv, static_cast<t_object*>(v_type_paint))
+	(L"Path"sv, static_cast<t_object*>(v_type_path))
+	(L"Rect"sv, static_cast<t_object*>(v_type_rect))
+	(L"Typeface"sv, static_cast<t_object*>(v_type_typeface))
+	(L"main"sv, t_static<void(*)(const t_pvalue&), [](auto a_callable)
+	{
+		t_session session;
+		a_callable();
+	}>())
 	;
 }
 
@@ -95,7 +93,7 @@ void t_type_of<xemmaix::skia::t_proxy>::f_define(t_library* a_library)
 {
 	using xemmaix::skia::t_proxy;
 	t_define{a_library}
-		(L"dispose"sv, t_member<void(t_proxy::*)(), &t_proxy::f_dispose>())
+	(L"dispose"sv, t_member<void(t_proxy::*)(), &t_proxy::f_dispose>())
 	.f_derive<t_proxy, t_object>();
 }
 

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.30)
-project(skia-xemmai VERSION 202503)
-find_package(xemmai 202411 REQUIRED)
+project(skia-xemmai VERSION 202504)
+find_package(xemmai 202504 REQUIRED)
 set(SKIA ${PROJECT_SOURCE_DIR}/skia)
 add_library(skia SHARED IMPORTED)
 target_include_directories(skia INTERFACE ${SKIA})
