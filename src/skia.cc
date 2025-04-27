@@ -27,6 +27,7 @@ void t_library::f_scan(t_scan a_scan)
 {
 	a_scan(v_type_proxy);
 	a_scan(v_type_surface);
+	a_scan(v_type_gl_context);
 	a_scan(v_type_filter_mode);
 	a_scan(v_type_mipmap_mode);
 	a_scan(v_type_sampling_options);
@@ -49,6 +50,7 @@ std::vector<std::pair<t_root, t_rvalue>> t_library::f_define()
 {
 	t_type_of<t_proxy>::f_define(this);
 	t_type_of<t_surface>::f_define(this);
+	t_type_of<t_gl_context>::f_define(this);
 	t_type_of<SkSamplingOptions>::f_define(this);
 	t_type_of<t_canvas>::f_define(this);
 	t_type_of<t_font>::f_define(this);
@@ -63,6 +65,7 @@ std::vector<std::pair<t_root, t_rvalue>> t_library::f_define()
 	return t_define(this)
 	(L"Proxy"sv, static_cast<t_object*>(v_type_proxy))
 	(L"Surface"sv, static_cast<t_object*>(v_type_surface))
+	(L"GLContext"sv, static_cast<t_object*>(v_type_gl_context))
 	(L"FilterMode"sv, t_type_of<SkFilterMode>::f_define(this))
 	(L"MipmapMode"sv, t_type_of<SkMipmapMode>::f_define(this))
 	(L"SamplingOptions"sv, static_cast<t_object*>(v_type_sampling_options))

@@ -89,6 +89,7 @@ struct t_proxy_of : t_proxy, T
 };
 
 struct t_surface;
+struct t_gl_context;
 struct t_canvas;
 struct t_font;
 struct t_font_manager;
@@ -101,6 +102,7 @@ class t_library : public xemmai::t_library
 {
 	t_slot_of<t_type> v_type_proxy;
 	t_slot_of<t_type> v_type_surface;
+	t_slot_of<t_type> v_type_gl_context;
 	t_slot_of<t_type> v_type_filter_mode;
 	t_slot_of<t_type> v_type_mipmap_mode;
 	t_slot_of<t_type> v_type_sampling_options;
@@ -126,6 +128,7 @@ public:
 XEMMAI__LIBRARY__BASE(t_library, t_global, f_global())
 XEMMAI__LIBRARY__TYPE(t_library, proxy)
 XEMMAI__LIBRARY__TYPE(t_library, surface)
+XEMMAI__LIBRARY__TYPE(t_library, gl_context)
 XEMMAI__LIBRARY__TYPE_AS(t_library, SkFilterMode, filter_mode)
 XEMMAI__LIBRARY__TYPE_AS(t_library, SkMipmapMode, mipmap_mode)
 XEMMAI__LIBRARY__TYPE_AS(t_library, SkSamplingOptions, sampling_options)
