@@ -34,6 +34,14 @@ void t_type_of<xemmaix::skia::t_surface>::f_define(t_library* a_library)
 		if (!surface) f_throw(L"SkSurfaces::WrapBackendRenderTarget"sv);
 		return xemmai::f_new<t_surface>(a_library, surface);
 	}>())
+	(L"width"sv, t_member<int(*)(const sk_sp<SkSurface>&), [](auto a_this)
+	{
+		return a_this->width();
+	}>())
+	(L"height"sv, t_member<int(*)(const sk_sp<SkSurface>&), [](auto a_this)
+	{
+		return a_this->height();
+	}>())
 	(L"draw"sv, t_member<void(*)(t_library*, const sk_sp<SkSurface>&, const t_pvalue&), [](auto a_library, auto a_this, auto a_callable)
 	{
 		auto object = xemmai::f_new<t_canvas>(a_library, a_this->getCanvas());
