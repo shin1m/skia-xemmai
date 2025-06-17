@@ -62,6 +62,14 @@ void t_type_of<xemmaix::skia::t_canvas>::f_define(t_library* a_library)
 {
 	t_define{a_library}
 	(L"SourceRectConstraint"sv, t_type_of<SkCanvas::SrcRectConstraint>::f_define(a_library))
+	(L"width"sv, t_member<int(*)(SkCanvas&), [](auto a_this)
+	{
+		return a_this.imageInfo().width();
+	}>())
+	(L"height"sv, t_member<int(*)(SkCanvas&), [](auto a_this)
+	{
+		return a_this.imageInfo().height();
+	}>())
 	(L"save"sv, t_member<int(SkCanvas::*)(), &SkCanvas::save>())
 	(L"restore"sv, t_member<void(SkCanvas::*)(), &SkCanvas::restore>())
 	(L"translate"sv, t_member<void(SkCanvas::*)(SkScalar, SkScalar), &SkCanvas::translate>())

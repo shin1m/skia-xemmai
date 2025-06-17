@@ -42,6 +42,9 @@ void t_library::f_scan(t_scan a_scan)
 	a_scan(v_type_paint);
 	a_scan(v_type_paint_style);
 	a_scan(v_type_path);
+	a_scan(v_type_path_arc_size);
+	a_scan(v_type_path_direction);
+	a_scan(v_type_path_fill_type);
 	a_scan(v_type_rect);
 	a_scan(v_type_typeface);
 }

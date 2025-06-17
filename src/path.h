@@ -2,7 +2,6 @@
 #define XEMMAIX__SKIA__PATH_H
 
 #include "skia.h"
-#include <include/core/SkPath.h>
 
 namespace xemmaix::skia
 {
@@ -16,6 +15,30 @@ struct t_path : t_proxy_of<SkPath>
 
 namespace xemmai
 {
+
+template<>
+struct t_type_of<SkPath::ArcSize> : t_enum_of<SkPath::ArcSize, xemmaix::skia::t_library>
+{
+	static t_object* f_define(t_library* a_library);
+
+	using t_base::t_base;
+};
+
+template<>
+struct t_type_of<SkPathDirection> : t_enum_of<SkPathDirection, xemmaix::skia::t_library>
+{
+	static t_object* f_define(t_library* a_library);
+
+	using t_base::t_base;
+};
+
+template<>
+struct t_type_of<SkPathFillType> : t_enum_of<SkPathFillType, xemmaix::skia::t_library>
+{
+	static t_object* f_define(t_library* a_library);
+
+	using t_base::t_base;
+};
 
 template<>
 struct t_fundamental<SkPath>

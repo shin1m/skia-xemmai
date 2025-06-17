@@ -5,6 +5,7 @@
 #include <include/core/SkCanvas.h>
 #include <include/core/SkFontMetrics.h>
 #include <include/core/SkFontStyle.h>
+#include <include/core/SkPath.h>
 #include <include/core/SkRect.h>
 #include <include/core/SkSamplingOptions.h>
 
@@ -117,6 +118,9 @@ class t_library : public xemmai::t_library
 	t_slot_of<t_type> v_type_paint;
 	t_slot_of<t_type> v_type_paint_style;
 	t_slot_of<t_type> v_type_path;
+	t_slot_of<t_type> v_type_path_arc_size;
+	t_slot_of<t_type> v_type_path_direction;
+	t_slot_of<t_type> v_type_path_fill_type;
 	t_slot_of<t_type> v_type_rect;
 	t_slot_of<t_type> v_type_typeface;
 
@@ -143,6 +147,9 @@ XEMMAI__LIBRARY__TYPE(t_library, image)
 XEMMAI__LIBRARY__TYPE(t_library, paint)
 XEMMAI__LIBRARY__TYPE_AS(t_library, SkPaint::Style, paint_style)
 XEMMAI__LIBRARY__TYPE(t_library, path)
+XEMMAI__LIBRARY__TYPE_AS(t_library, SkPath::ArcSize, path_arc_size)
+XEMMAI__LIBRARY__TYPE_AS(t_library, SkPathDirection, path_direction)
+XEMMAI__LIBRARY__TYPE_AS(t_library, SkPathFillType, path_fill_type)
 XEMMAI__LIBRARY__TYPE_AS(t_library, SkRect, rect)
 XEMMAI__LIBRARY__TYPE(t_library, typeface)
 
