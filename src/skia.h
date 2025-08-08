@@ -101,28 +101,30 @@ struct t_typeface;
 
 class t_library : public xemmai::t_library
 {
-	t_slot_of<t_type> v_type_proxy;
-	t_slot_of<t_type> v_type_surface;
-	t_slot_of<t_type> v_type_gl_context;
-	t_slot_of<t_type> v_type_filter_mode;
-	t_slot_of<t_type> v_type_mipmap_mode;
-	t_slot_of<t_type> v_type_sampling_options;
-	t_slot_of<t_type> v_type_source_rect_constraint;
-	t_slot_of<t_type> v_type_canvas;
-	t_slot_of<t_type> v_type_font;
-	t_slot_of<t_type> v_type_font_manager;
-	t_slot_of<t_type> v_type_font_metrics;
-	t_slot_of<t_type> v_type_font_style;
-	t_slot_of<t_type> v_type_font_style_slant;
-	t_slot_of<t_type> v_type_image;
-	t_slot_of<t_type> v_type_paint;
-	t_slot_of<t_type> v_type_paint_style;
-	t_slot_of<t_type> v_type_path;
-	t_slot_of<t_type> v_type_path_arc_size;
-	t_slot_of<t_type> v_type_path_direction;
-	t_slot_of<t_type> v_type_path_fill_type;
-	t_slot_of<t_type> v_type_rect;
-	t_slot_of<t_type> v_type_typeface;
+#define XEMMAIX__SKIA__TYPES(_)\
+	_(proxy)\
+	_(surface)\
+	_(gl_context)\
+	_##_AS(SkFilterMode, filter_mode)\
+	_##_AS(SkMipmapMode, mipmap_mode)\
+	_##_AS(SkSamplingOptions, sampling_options)\
+	_##_AS(SkCanvas::SrcRectConstraint, source_rect_constraint)\
+	_(canvas)\
+	_(font)\
+	_(font_manager)\
+	_##_AS(SkFontMetrics, font_metrics)\
+	_##_AS(SkFontStyle, font_style)\
+	_##_AS(SkFontStyle::Slant, font_style_slant)\
+	_(image)\
+	_(paint)\
+	_##_AS(SkPaint::Style, paint_style)\
+	_(path)\
+	_##_AS(SkPath::ArcSize, path_arc_size)\
+	_##_AS(SkPathDirection, path_direction)\
+	_##_AS(SkPathFillType, path_fill_type)\
+	_##_AS(SkRect, rect)\
+	_(typeface)
+	XEMMAIX__SKIA__TYPES(XEMMAI__TYPE__DECLARE)
 
 public:
 	using xemmai::t_library::t_library;
@@ -130,28 +132,9 @@ public:
 };
 
 XEMMAI__LIBRARY__BASE(t_library, t_global, f_global())
-XEMMAI__LIBRARY__TYPE(t_library, proxy)
-XEMMAI__LIBRARY__TYPE(t_library, surface)
-XEMMAI__LIBRARY__TYPE(t_library, gl_context)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkFilterMode, filter_mode)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkMipmapMode, mipmap_mode)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkSamplingOptions, sampling_options)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkCanvas::SrcRectConstraint, source_rect_constraint)
-XEMMAI__LIBRARY__TYPE(t_library, canvas)
-XEMMAI__LIBRARY__TYPE(t_library, font)
-XEMMAI__LIBRARY__TYPE(t_library, font_manager)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkFontMetrics, font_metrics)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkFontStyle, font_style)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkFontStyle::Slant, font_style_slant)
-XEMMAI__LIBRARY__TYPE(t_library, image)
-XEMMAI__LIBRARY__TYPE(t_library, paint)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkPaint::Style, paint_style)
-XEMMAI__LIBRARY__TYPE(t_library, path)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkPath::ArcSize, path_arc_size)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkPathDirection, path_direction)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkPathFillType, path_fill_type)
-XEMMAI__LIBRARY__TYPE_AS(t_library, SkRect, rect)
-XEMMAI__LIBRARY__TYPE(t_library, typeface)
+#define XEMMAI__TYPE__LIBRARY t_library
+XEMMAIX__SKIA__TYPES(XEMMAI__TYPE__DEFINE)
+#undef XEMMAI__TYPE__LIBRARY
 
 }
 

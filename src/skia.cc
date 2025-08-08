@@ -25,28 +25,7 @@ void t_proxy::f_dispose()
 
 void t_library::f_scan(t_scan a_scan)
 {
-	a_scan(v_type_proxy);
-	a_scan(v_type_surface);
-	a_scan(v_type_gl_context);
-	a_scan(v_type_filter_mode);
-	a_scan(v_type_mipmap_mode);
-	a_scan(v_type_sampling_options);
-	a_scan(v_type_source_rect_constraint);
-	a_scan(v_type_canvas);
-	a_scan(v_type_font);
-	a_scan(v_type_font_manager);
-	a_scan(v_type_font_metrics);
-	a_scan(v_type_font_style);
-	a_scan(v_type_font_style_slant);
-	a_scan(v_type_image);
-	a_scan(v_type_paint);
-	a_scan(v_type_paint_style);
-	a_scan(v_type_path);
-	a_scan(v_type_path_arc_size);
-	a_scan(v_type_path_direction);
-	a_scan(v_type_path_fill_type);
-	a_scan(v_type_rect);
-	a_scan(v_type_typeface);
+	XEMMAIX__SKIA__TYPES(XEMMAI__TYPE__SCAN)
 }
 
 std::vector<std::pair<t_root, t_rvalue>> t_library::f_define()
