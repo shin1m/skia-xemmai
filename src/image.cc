@@ -16,7 +16,7 @@ namespace
 struct t_stream : SkStream
 {
 	t_pvalue v_read;
-	t_object* v_buffer = t_bytes::f_instantiate(1024);
+	t_root v_buffer = t_bytes::f_instantiate(1024);
 	unsigned char* v_head = &f_as<t_bytes&>(v_buffer)[0];
 	unsigned char* v_tail;
 
