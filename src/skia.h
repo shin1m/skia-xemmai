@@ -27,9 +27,11 @@ protected:
 	{
 		v_previous->v_next = v_next->v_previous = this;
 	}
-
-public:
-	virtual void f_dispose();
+	~t_entry()
+	{
+		v_previous->v_next = v_next;
+		v_next->v_previous = v_previous;
+	}
 };
 
 class t_session : public t_entry
@@ -48,14 +50,10 @@ public:
 		if (v_instance) f_throw(L"already inside main."sv);
 		v_instance = this;
 	}
-	~t_session()
-	{
-		while (v_next != this) v_next->f_dispose();
-		v_instance = nullptr;
-	}
+	~t_session();
 };
 
-class t_proxy : t_entry
+class t_proxy : public t_entry
 {
 	t_entry* v_session = v_previous;
 	t_root v_object = t_object::f_of(this);

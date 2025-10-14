@@ -11,16 +11,16 @@
 namespace xemmaix::skia
 {
 
-void t_entry::f_dispose()
+t_session::~t_session()
 {
-	v_previous->v_next = v_next;
-	v_next->v_previous = v_previous;
+	while (v_next != this) static_cast<t_proxy*>(v_next)->f_dispose();
+	v_instance = nullptr;
 }
 
 void t_proxy::f_dispose()
 {
-	t_entry::f_dispose();
 	v_object = nullptr;
+	this->~t_entry();
 }
 
 void t_library::f_scan(t_scan a_scan)
