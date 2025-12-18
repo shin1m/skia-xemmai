@@ -3,16 +3,17 @@ skia = Module("skia"
 Module("png").do(Module("system").arguments[0], @(canvas)
 	surface = skia.Surface.raster(64, 64
 	surface.draw(@(canvas)
-		path = skia.Path()
-			.move_to(16.0, 0.0)
-			.line_to(48.0, 0.0)
-			.line_to(64.0, 16.0)
-			.line_to(64.0, 48.0)
-			.line_to(48.0, 64.0)
-			.line_to(16.0, 64.0)
-			.line_to(0.0, 48.0)
-			.line_to(0.0, 16.0)
+		path = skia.PathBuilder()
+			.move_to(16.0, 0.0
+			.line_to(48.0, 0.0
+			.line_to(64.0, 16.0
+			.line_to(64.0, 48.0
+			.line_to(48.0, 64.0
+			.line_to(16.0, 64.0
+			.line_to(0.0, 48.0
+			.line_to(0.0, 16.0
 			.close(
+			.detach(
 		paint = skia.Paint(
 		paint.anti_alias__(true
 		canvas.draw_path(path, paint

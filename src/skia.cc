@@ -42,6 +42,7 @@ std::vector<std::pair<t_root, t_rvalue>> t_library::f_define()
 	t_type_of<t_image>::f_define(this);
 	t_type_of<t_paint>::f_define(this);
 	t_type_of<t_path>::f_define(this);
+	t_type_of<t_path_builder>::f_define(this);
 	t_type_of<SkRect>::f_define(this);
 	t_type_of<t_typeface>::f_define(this);
 	return t_define(this)
@@ -59,6 +60,7 @@ std::vector<std::pair<t_root, t_rvalue>> t_library::f_define()
 	(L"Image"sv, static_cast<t_object*>(v_type_image))
 	(L"Paint"sv, static_cast<t_object*>(v_type_paint))
 	(L"Path"sv, static_cast<t_object*>(v_type_path))
+	(L"PathBuilder"sv, static_cast<t_object*>(v_type_path_builder))
 	(L"Rect"sv, static_cast<t_object*>(v_type_rect))
 	(L"Typeface"sv, static_cast<t_object*>(v_type_typeface))
 	(L"main"sv, t_static<void(*)(const t_pvalue&), [](auto a_callable)

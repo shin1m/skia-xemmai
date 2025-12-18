@@ -11,13 +11,18 @@ struct t_path : t_proxy_of<SkPath>
 	using t_base::t_base;
 };
 
+struct t_path_builder : t_proxy_of<SkPathBuilder>
+{
+	using t_base::t_base;
+};
+
 }
 
 namespace xemmai
 {
 
 template<>
-struct t_type_of<SkPath::ArcSize> : t_enum_of<SkPath::ArcSize, xemmaix::skia::t_library>
+struct t_type_of<SkPathBuilder::ArcSize> : t_enum_of<SkPathBuilder::ArcSize, xemmaix::skia::t_library>
 {
 	static t_object* f_define(t_library* a_library);
 
@@ -48,6 +53,21 @@ struct t_fundamental<SkPath>
 
 template<>
 struct t_type_of<xemmaix::skia::t_path> : t_bears<xemmaix::skia::t_path, t_type_of<xemmaix::skia::t_proxy>>
+{
+	static void f_define(t_library* a_library);
+
+	using t_base::t_base;
+	t_pvalue f_do_construct(t_pvalue* a_stack, size_t a_n);
+};
+
+template<>
+struct t_fundamental<SkPathBuilder>
+{
+	using t_type = xemmaix::skia::t_path_builder;
+};
+
+template<>
+struct t_type_of<xemmaix::skia::t_path_builder> : t_bears<xemmaix::skia::t_path_builder, t_type_of<xemmaix::skia::t_proxy>>
 {
 	static void f_define(t_library* a_library);
 

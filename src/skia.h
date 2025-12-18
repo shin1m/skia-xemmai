@@ -5,7 +5,7 @@
 #include <include/core/SkCanvas.h>
 #include <include/core/SkFontMetrics.h>
 #include <include/core/SkFontStyle.h>
-#include <include/core/SkPath.h>
+#include <include/core/SkPathBuilder.h>
 #include <include/core/SkRect.h>
 #include <include/core/SkSamplingOptions.h>
 
@@ -95,6 +95,7 @@ struct t_font_manager;
 struct t_image;
 struct t_paint;
 struct t_path;
+struct t_path_builder;
 struct t_typeface;
 
 class t_library : public xemmai::t_library
@@ -117,7 +118,8 @@ class t_library : public xemmai::t_library
 	_(paint)\
 	_##_AS(SkPaint::Style, paint_style)\
 	_(path)\
-	_##_AS(SkPath::ArcSize, path_arc_size)\
+	_(path_builder)\
+	_##_AS(SkPathBuilder::ArcSize, path_arc_size)\
 	_##_AS(SkPathDirection, path_direction)\
 	_##_AS(SkPathFillType, path_fill_type)\
 	_##_AS(SkRect, rect)\

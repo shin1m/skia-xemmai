@@ -1,6 +1,7 @@
 #include "font_manager.h"
 #include "typeface.h"
 #include <include/ports/SkFontMgr_fontconfig.h>
+#include <include/ports/SkFontScanner_FreeType.h>
 
 namespace xemmai
 {
@@ -57,7 +58,7 @@ void t_type_of<xemmaix::skia::t_font_manager>::f_define(t_library* a_library)
 	t_define{a_library}
 	(L"make_default"sv, t_static<t_object*(*)(t_library*), [](auto a_library)
 	{
-		return xemmai::f_new<t_font_manager>(a_library, SkFontMgr_New_FontConfig(nullptr));
+		return xemmai::f_new<t_font_manager>(a_library, SkFontMgr_New_FontConfig(nullptr, SkFontScanner_Make_FreeType()));
 	}>())
 	(L"match_family_style"sv, t_member<t_object*(*)(t_library*, const sk_sp<SkFontMgr>&, const t_string*, const SkFontStyle&), [](auto a_library, auto a_this, auto a_family, auto a_style)
 	{
