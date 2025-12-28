@@ -87,9 +87,9 @@ t_pvalue t_type_of<t_font>::f_do_construct(t_pvalue* a_stack, size_t a_n)
 {
 	return t_overload<
 		t_construct<>,
-		t_construct<sk_sp<SkTypeface>>,
-		t_construct<sk_sp<SkTypeface>, SkScalar>,
-		t_construct<sk_sp<SkTypeface>, SkScalar, SkScalar, SkScalar>
+		t_construct<const sk_sp<SkTypeface>&>,
+		t_construct<const sk_sp<SkTypeface>&, SkScalar>,
+		t_construct<const sk_sp<SkTypeface>&, SkScalar, SkScalar, SkScalar>
 	>::t_bind<t_font>::f_do(this, a_stack, a_n);
 }
 
