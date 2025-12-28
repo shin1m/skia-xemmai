@@ -8,6 +8,7 @@ add_library(skia-xemmai MODULE
 	paint.cc
 	path.cc
 	rect.cc
+	shader.cc
 	typeface.cc
 )
 target_link_libraries(skia-xemmai PRIVATE skia xemmai)

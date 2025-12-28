@@ -26,6 +26,30 @@ struct t_type_of<SkPaint::Style> : t_enum_of<SkPaint::Style, xemmaix::skia::t_li
 };
 
 template<>
+struct t_type_of<SkPaint::Cap> : t_enum_of<SkPaint::Cap, xemmaix::skia::t_library>
+{
+	static t_object* f_define(t_library* a_library);
+
+	using t_base::t_base;
+};
+
+template<>
+struct t_type_of<SkPaint::Join> : t_enum_of<SkPaint::Join, xemmaix::skia::t_library>
+{
+	static t_object* f_define(t_library* a_library);
+
+	using t_base::t_base;
+};
+
+template<>
+struct t_type_of<SkBlendMode> : t_enum_of<SkBlendMode, xemmaix::skia::t_library>
+{
+	static t_object* f_define(t_library* a_library);
+
+	using t_base::t_base;
+};
+
+template<>
 struct t_fundamental<SkPaint>
 {
 	using t_type = xemmaix::skia::t_paint;

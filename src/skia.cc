@@ -6,6 +6,7 @@
 #include "paint.h"
 #include "path.h"
 #include "rect.h"
+#include "shader.h"
 #include "typeface.h"
 
 namespace xemmaix::skia
@@ -35,15 +36,16 @@ std::vector<std::pair<t_root, t_rvalue>> t_library::f_define()
 	t_type_of<t_gl_context>::f_define(this);
 	t_type_of<SkSamplingOptions>::f_define(this);
 	t_type_of<t_canvas>::f_define(this);
-	t_type_of<t_font>::f_define(this);
-	t_type_of<t_font_manager>::f_define(this);
 	t_type_of<SkFontMetrics>::f_define(this);
+	t_type_of<t_font>::f_define(this);
 	t_type_of<SkFontStyle>::f_define(this);
+	t_type_of<t_font_manager>::f_define(this);
 	t_type_of<t_image>::f_define(this);
 	t_type_of<t_paint>::f_define(this);
 	t_type_of<t_path>::f_define(this);
 	t_type_of<t_path_builder>::f_define(this);
 	t_type_of<SkRect>::f_define(this);
+	t_type_of<t_shader>::f_define(this);
 	t_type_of<t_typeface>::f_define(this);
 	return t_define(this)
 	(L"Proxy"sv, static_cast<t_object*>(v_type_proxy))
@@ -53,15 +55,16 @@ std::vector<std::pair<t_root, t_rvalue>> t_library::f_define()
 	(L"MipmapMode"sv, t_type_of<SkMipmapMode>::f_define(this))
 	(L"SamplingOptions"sv, static_cast<t_object*>(v_type_sampling_options))
 	(L"Canvas"sv, static_cast<t_object*>(v_type_canvas))
-	(L"Font"sv, static_cast<t_object*>(v_type_font))
-	(L"FontManager"sv, static_cast<t_object*>(v_type_font_manager))
 	(L"FontMetrics"sv, static_cast<t_object*>(v_type_font_metrics))
+	(L"Font"sv, static_cast<t_object*>(v_type_font))
 	(L"FontStyle"sv, static_cast<t_object*>(v_type_font_style))
+	(L"FontManager"sv, static_cast<t_object*>(v_type_font_manager))
 	(L"Image"sv, static_cast<t_object*>(v_type_image))
 	(L"Paint"sv, static_cast<t_object*>(v_type_paint))
 	(L"Path"sv, static_cast<t_object*>(v_type_path))
 	(L"PathBuilder"sv, static_cast<t_object*>(v_type_path_builder))
 	(L"Rect"sv, static_cast<t_object*>(v_type_rect))
+	(L"Shader"sv, static_cast<t_object*>(v_type_shader))
 	(L"Typeface"sv, static_cast<t_object*>(v_type_typeface))
 	(L"main"sv, t_static<void(*)(const t_pvalue&), [](auto a_callable)
 	{

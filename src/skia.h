@@ -96,6 +96,7 @@ struct t_image;
 struct t_paint;
 struct t_path;
 struct t_path_builder;
+struct t_shader;
 struct t_typeface;
 
 class t_library : public xemmai::t_library
@@ -109,20 +110,25 @@ class t_library : public xemmai::t_library
 	_##_AS(SkSamplingOptions, sampling_options)\
 	_##_AS(SkCanvas::SrcRectConstraint, source_rect_constraint)\
 	_(canvas)\
-	_(font)\
-	_(font_manager)\
 	_##_AS(SkFontMetrics, font_metrics)\
-	_##_AS(SkFontStyle, font_style)\
+	_(font)\
 	_##_AS(SkFontStyle::Slant, font_style_slant)\
+	_##_AS(SkFontStyle, font_style)\
+	_(font_manager)\
 	_(image)\
-	_(paint)\
 	_##_AS(SkPaint::Style, paint_style)\
-	_(path)\
-	_(path_builder)\
-	_##_AS(SkPathBuilder::ArcSize, path_arc_size)\
+	_##_AS(SkPaint::Cap, paint_cap)\
+	_##_AS(SkPaint::Join, paint_join)\
+	_##_AS(SkBlendMode, blend_mode)\
+	_(paint)\
+	_##_AS(SkPathBuilder::ArcSize, path_builder_arc_size)\
 	_##_AS(SkPathDirection, path_direction)\
 	_##_AS(SkPathFillType, path_fill_type)\
+	_(path)\
+	_(path_builder)\
 	_##_AS(SkRect, rect)\
+	_##_AS(SkTileMode, tile_mode)\
+	_(shader)\
 	_(typeface)
 	XEMMAIX__SKIA__TYPES(XEMMAI__TYPE__DECLARE)
 
