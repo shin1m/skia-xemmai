@@ -18,6 +18,22 @@ namespace xemmai
 {
 
 template<>
+struct t_type_of<SkColorType> : t_enum_of<SkColorType, xemmaix::skia::t_library>
+{
+	static t_object* f_define(t_library* a_library);
+
+	using t_base::t_base;
+};
+
+template<>
+struct t_type_of<SkAlphaType> : t_enum_of<SkAlphaType, xemmaix::skia::t_library>
+{
+	static t_object* f_define(t_library* a_library);
+
+	using t_base::t_base;
+};
+
+template<>
 struct t_fundamental<sk_sp<SkImage>>
 {
 	using t_type = xemmaix::skia::t_image;

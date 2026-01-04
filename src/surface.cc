@@ -58,6 +58,47 @@ void t_type_of<xemmaix::skia::t_surface>::f_define(t_library* a_library)
 		if (auto p = a_this->makeImageSnapshot()) return xemmai::f_new<xemmaix::skia::t_image>(a_library, p);
 		f_throw(L"SkSurface::makeImageSnapshot"sv);
 	}>())
+	(L"read_pixels"sv, t_member<t_object*(*)(const sk_sp<SkSurface>&, int, int, SkColorType, SkAlphaType, int, int), [](auto a_this, auto a_width, auto a_height, auto a_color_type, auto a_alpha_type, auto a_x, auto a_y)
+	{
+		auto row = a_width;
+		switch (a_color_type) {
+		case kRGB_565_SkColorType:
+		case kARGB_4444_SkColorType:
+		case kR8G8_unorm_SkColorType:
+		case kA16_float_SkColorType:
+		case kA16_unorm_SkColorType:
+		case kR16_unorm_SkColorType:
+			row *= 2;
+			break;
+		case kRGBA_8888_SkColorType:
+		case kRGB_888x_SkColorType:
+		case kBGRA_8888_SkColorType:
+		case kRGBA_1010102_SkColorType:
+		case kBGRA_1010102_SkColorType:
+		case kRGB_101010x_SkColorType:
+		case kBGR_101010x_SkColorType:
+		case kBGR_101010x_XR_SkColorType:
+		case kR16G16_float_SkColorType:
+		case kR16G16_unorm_SkColorType:
+		case kSRGBA_8888_SkColorType:
+			row *= 4;
+			break;
+		case kBGRA_10101010_XR_SkColorType:
+		case kRGBA_10x6_SkColorType:
+		case kRGBA_F16Norm_SkColorType:
+		case kRGBA_F16_SkColorType:
+		case kRGB_F16F16F16x_SkColorType:
+		case kR16G16B16A16_unorm_SkColorType:
+			row *= 8;
+			break;
+		case kRGBA_F32_SkColorType:
+			row *= 16;
+			break;
+		}
+		auto p = t_bytes::f_instantiate(row * a_height);
+		if (a_this->readPixels(SkImageInfo::Make(a_width, a_height, a_color_type, a_alpha_type), &f_as<t_bytes&>(p)[0], row, a_x, a_y)) return p;
+		f_throw(L"SkSurface::readPixels"sv);
+	}>())
 	.f_derive<t_surface, t_proxy>();
 }
 

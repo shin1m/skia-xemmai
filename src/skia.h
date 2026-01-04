@@ -115,6 +115,8 @@ class t_library : public xemmai::t_library
 	_##_AS(SkFontStyle::Slant, font_style_slant)\
 	_##_AS(SkFontStyle, font_style)\
 	_(font_manager)\
+	_##_AS(SkColorType, color_type)\
+	_##_AS(SkAlphaType, alpha_type)\
 	_(image)\
 	_##_AS(SkPaint::Style, paint_style)\
 	_##_AS(SkPaint::Cap, paint_cap)\

@@ -10,6 +10,56 @@
 namespace xemmai
 {
 
+t_object* t_type_of<SkColorType>::f_define(t_library* a_library)
+{
+	return t_base::f_define(a_library, [](auto a_fields)
+	{
+		a_fields
+		(L"UNKNOWN"sv, kUnknown_SkColorType)
+		(L"ALPHA_8", kAlpha_8_SkColorType)
+		(L"RGB_565", kRGB_565_SkColorType)
+		(L"ARGB_4444", kARGB_4444_SkColorType)
+		(L"RGBA_8888", kRGBA_8888_SkColorType)
+		(L"RGB_888X", kRGB_888x_SkColorType)
+		(L"BGRA_8888", kBGRA_8888_SkColorType)
+		(L"RGBA_1010102", kRGBA_1010102_SkColorType)
+		(L"BGRA_1010102", kBGRA_1010102_SkColorType)
+		(L"RGB_101010X", kRGB_101010x_SkColorType)
+		(L"BGR_101010X", kBGR_101010x_SkColorType)
+		(L"BGR_101010X_XR", kBGR_101010x_XR_SkColorType)
+		(L"BGRA_10101010_XR", kBGRA_10101010_XR_SkColorType)
+		(L"RGBA_10X6", kRGBA_10x6_SkColorType)
+		(L"GRAY_8", kGray_8_SkColorType)
+		(L"RGBA_F16NORM", kRGBA_F16Norm_SkColorType)
+		(L"RGBA_F16", kRGBA_F16_SkColorType)
+		(L"RGB_F16F16F16X", kRGB_F16F16F16x_SkColorType)
+		(L"RGBA_F32", kRGBA_F32_SkColorType)
+		(L"R8G8_UNORM", kR8G8_unorm_SkColorType)
+		(L"A16_FLOAT", kA16_float_SkColorType)
+		(L"R16G16_FLOAT", kR16G16_float_SkColorType)
+		(L"A16_UNORM", kA16_unorm_SkColorType)
+		(L"R16_UNORM", kR16_unorm_SkColorType)
+		(L"R16G16_UNORM", kR16G16_unorm_SkColorType)
+		(L"R16G16B16A16_UNORM", kR16G16B16A16_unorm_SkColorType)
+		(L"SRGBA_8888", kSRGBA_8888_SkColorType)
+		(L"R8_UNORM", kR8_unorm_SkColorType)
+		;
+	});
+}
+
+t_object* t_type_of<SkAlphaType>::f_define(t_library* a_library)
+{
+	return t_base::f_define(a_library, [](auto a_fields)
+	{
+		a_fields
+		(L"UNKNOWN"sv, kUnknown_SkAlphaType)
+		(L"OPAQUE", kOpaque_SkAlphaType)
+		(L"PREMUL", kPremul_SkAlphaType)
+		(L"UNPREMUL", kUnpremul_SkAlphaType)
+		;
+	});
+}
+
 namespace
 {
 
