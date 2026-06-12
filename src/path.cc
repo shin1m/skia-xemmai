@@ -67,23 +67,23 @@ void t_type_of<t_path_builder>::f_define(t_library* a_library)
 		return xemmai::f_new<t_path>(a_library, a_this.detach());
 	}>())
 	(L"fill_type__"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkPathFillType), &SkPathBuilder::setFillType>())
-	(L"move_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkScalar, SkScalar), &SkPathBuilder::moveTo>())
-	(L"r_move_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkScalar, SkScalar), &SkPathBuilder::rMoveTo>())
-	(L"line_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkScalar, SkScalar), &SkPathBuilder::lineTo>())
-	(L"r_line_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkScalar, SkScalar), &SkPathBuilder::rLineTo>())
-	(L"quad_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkScalar, SkScalar, SkScalar, SkScalar), &SkPathBuilder::quadTo>())
-	(L"r_quad_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkScalar, SkScalar, SkScalar, SkScalar), &SkPathBuilder::rQuadTo>())
-	(L"conic_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkScalar, SkScalar, SkScalar, SkScalar, SkScalar), &SkPathBuilder::conicTo>())
-	(L"r_conic_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkScalar, SkScalar, SkScalar, SkScalar, SkScalar), &SkPathBuilder::rConicTo>())
-	(L"cubic_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkScalar, SkScalar, SkScalar, SkScalar, SkScalar, SkScalar), &SkPathBuilder::cubicTo>())
-	(L"r_cubic_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkScalar, SkScalar, SkScalar, SkScalar, SkScalar, SkScalar), &SkPathBuilder::rCubicTo>())
-	(L"arc_to"sv, t_member<SkPathBuilder&(*)(SkPathBuilder&, SkScalar, SkScalar, SkScalar, SkPathBuilder::ArcSize, SkPathDirection, SkScalar, SkScalar), [](auto a_this, auto a_rx, auto a_ry, auto a_rotate, auto a_size, auto a_sweep, auto a_x, auto a_y) -> SkPathBuilder&
+	(L"move_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float), &SkPathBuilder::moveTo>())
+	(L"r_move_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float), &SkPathBuilder::rMoveTo>())
+	(L"line_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float), &SkPathBuilder::lineTo>())
+	(L"r_line_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float), &SkPathBuilder::rLineTo>())
+	(L"quad_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float, float, float), &SkPathBuilder::quadTo>())
+	(L"r_quad_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float, float, float), &SkPathBuilder::rQuadTo>())
+	(L"conic_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float, float, float, float), &SkPathBuilder::conicTo>())
+	(L"r_conic_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float, float, float, float), &SkPathBuilder::rConicTo>())
+	(L"cubic_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float, float, float, float, float), &SkPathBuilder::cubicTo>())
+	(L"r_cubic_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float, float, float, float, float), &SkPathBuilder::rCubicTo>())
+	(L"arc_to"sv, t_member<SkPathBuilder&(*)(SkPathBuilder&, float, float, float, SkPathBuilder::ArcSize, SkPathDirection, float, float), [](auto a_this, auto a_rx, auto a_ry, auto a_rotate, auto a_size, auto a_sweep, auto a_x, auto a_y) -> SkPathBuilder&
 	{
-		return a_this.arcTo(SkPoint{a_rx, a_ry}, a_rotate, a_size, a_sweep, SkPoint{a_x, a_y});
+		return a_this.arcTo({a_rx, a_ry}, a_rotate, a_size, a_sweep, {a_x, a_y});
 	}>())
-	(L"r_arc_to"sv, t_member<SkPathBuilder&(*)(SkPathBuilder&, SkScalar, SkScalar, SkScalar, SkPathBuilder::ArcSize, SkPathDirection, SkScalar, SkScalar), [](auto a_this, auto a_rx, auto a_ry, auto a_rotate, auto a_size, auto a_sweep, auto a_x, auto a_y) -> SkPathBuilder&
+	(L"r_arc_to"sv, t_member<SkPathBuilder&(*)(SkPathBuilder&, float, float, float, SkPathBuilder::ArcSize, SkPathDirection, float, float), [](auto a_this, auto a_rx, auto a_ry, auto a_rotate, auto a_size, auto a_sweep, auto a_x, auto a_y) -> SkPathBuilder&
 	{
-		return a_this.rArcTo(SkPoint{a_rx, a_ry}, a_rotate, a_size, a_sweep, SkPoint{a_x, a_y});
+		return a_this.rArcTo({a_rx, a_ry}, a_rotate, a_size, a_sweep, {a_x, a_y});
 	}>())
 	(L"close"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(), &SkPathBuilder::close>())
 	(L"add_rect"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(const SkRect&, SkPathDirection, unsigned), &SkPathBuilder::addRect>())

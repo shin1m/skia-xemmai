@@ -10,52 +10,52 @@ using namespace xemmaix::skia;
 void t_type_of<SkFontMetrics>::f_define(t_library* a_library)
 {
 	t_define{a_library}
-	(L"ascent"sv, t_member<SkScalar(*)(const SkFontMetrics&), [](auto a_this)
+	(L"ascent"sv, t_member<float(*)(const SkFontMetrics&), [](auto a_this)
 	{
 		return a_this.fAscent;
 	}>())
-	(L"descent"sv, t_member<SkScalar(*)(const SkFontMetrics&), [](auto a_this)
+	(L"descent"sv, t_member<float(*)(const SkFontMetrics&), [](auto a_this)
 	{
 		return a_this.fDescent;
 	}>())
-	(L"leading"sv, t_member<SkScalar(*)(const SkFontMetrics&), [](auto a_this)
+	(L"leading"sv, t_member<float(*)(const SkFontMetrics&), [](auto a_this)
 	{
 		return a_this.fLeading;
 	}>())
-	(L"avg_char_width"sv, t_member<SkScalar(*)(const SkFontMetrics&), [](auto a_this)
+	(L"avg_char_width"sv, t_member<float(*)(const SkFontMetrics&), [](auto a_this)
 	{
 		return a_this.fAvgCharWidth;
 	}>())
-	(L"max_char_width"sv, t_member<SkScalar(*)(const SkFontMetrics&), [](auto a_this)
+	(L"max_char_width"sv, t_member<float(*)(const SkFontMetrics&), [](auto a_this)
 	{
 		return a_this.fMaxCharWidth;
 	}>())
-	(L"x_height"sv, t_member<SkScalar(*)(const SkFontMetrics&), [](auto a_this)
+	(L"x_height"sv, t_member<float(*)(const SkFontMetrics&), [](auto a_this)
 	{
 		return a_this.fXHeight;
 	}>())
-	(L"cap_height"sv, t_member<SkScalar(*)(const SkFontMetrics&), [](auto a_this)
+	(L"cap_height"sv, t_member<float(*)(const SkFontMetrics&), [](auto a_this)
 	{
 		return a_this.fCapHeight;
 	}>())
 	(L"underline_thickness"sv, t_member<t_pvalue(*)(const SkFontMetrics&), [](auto a_this)
 	{
-		SkScalar value;
+		float value;
 		return a_this.hasUnderlineThickness(&value) ? value : t_pvalue{};
 	}>())
 	(L"underline_position"sv, t_member<t_pvalue(*)(const SkFontMetrics&), [](auto a_this)
 	{
-		SkScalar value;
+		float value;
 		return a_this.hasUnderlinePosition(&value) ? value : t_pvalue{};
 	}>())
 	(L"strikeout_thickness"sv, t_member<t_pvalue(*)(const SkFontMetrics&), [](auto a_this)
 	{
-		SkScalar value;
+		float value;
 		return a_this.hasStrikeoutThickness(&value) ? value : t_pvalue{};
 	}>())
 	(L"strikeout_position"sv, t_member<t_pvalue(*)(const SkFontMetrics&), [](auto a_this)
 	{
-		SkScalar value;
+		float value;
 		return a_this.hasStrikeoutPosition(&value) ? value : t_pvalue{};
 	}>())
 	.f_derive<SkFontMetrics, t_object>();
@@ -64,7 +64,7 @@ void t_type_of<SkFontMetrics>::f_define(t_library* a_library)
 void t_type_of<t_font>::f_define(t_library* a_library)
 {
 	t_define{a_library}
-	(L"measure_advance"sv, t_member<SkScalar(*)(const SkFont&, std::wstring_view), [](auto a_this, auto a_text)
+	(L"measure_advance"sv, t_member<float(*)(const SkFont&, std::wstring_view), [](auto a_this, auto a_text)
 	{
 		return a_this.measureText(a_text.data(), a_text.size() * sizeof(wchar_t), SkTextEncoding::kUTF32);
 	}>())
@@ -88,8 +88,8 @@ t_pvalue t_type_of<t_font>::f_do_construct(t_pvalue* a_stack, size_t a_n)
 	return t_overload<
 		t_construct<>,
 		t_construct<const sk_sp<SkTypeface>&>,
-		t_construct<const sk_sp<SkTypeface>&, SkScalar>,
-		t_construct<const sk_sp<SkTypeface>&, SkScalar, SkScalar, SkScalar>
+		t_construct<const sk_sp<SkTypeface>&, float>,
+		t_construct<const sk_sp<SkTypeface>&, float, float, float>
 	>::t_bind<t_font>::f_do(this, a_stack, a_n);
 }
 
