@@ -56,7 +56,7 @@ public:
 class t_proxy : public t_entry
 {
 	t_entry* v_session = v_previous;
-	t_root v_object = t_object::f_of(this);
+	t_root v_object;
 
 protected:
 	t_proxy() : t_entry(t_session::f_instance())
@@ -64,6 +64,16 @@ protected:
 	}
 
 public:
+	static t_object* f_own(t_object* a_value)
+	{
+		return a_value->f_as<t_proxy>().v_object = a_value;
+	}
+	template<typename T>
+	static t_object* f_new(t_type* a_class, auto&&... a_xs)
+	{
+		return f_own(a_class->template f_new<T>(std::forward<decltype(a_xs)>(a_xs)...));
+	}
+
 	virtual void f_dispose();
 	bool f_valid()
 	{

@@ -60,11 +60,11 @@ void t_type_of<t_path_builder>::f_define(t_library* a_library)
 	t_define{a_library}
 	(L"snapshot"sv, t_member<t_object*(*)(t_library*, SkPathBuilder&), [](auto a_library, auto a_this)
 	{
-		return xemmai::f_new<t_path>(a_library, a_this.snapshot());
+		return t_proxy::f_own(xemmai::f_new<t_path>(a_library, a_this.snapshot()));
 	}>())
 	(L"detach"sv, t_member<t_object*(*)(t_library*, SkPathBuilder&), [](auto a_library, auto a_this)
 	{
-		return xemmai::f_new<t_path>(a_library, a_this.detach());
+		return t_proxy::f_own(xemmai::f_new<t_path>(a_library, a_this.detach()));
 	}>())
 	(L"fill_type__"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(SkPathFillType), &SkPathBuilder::setFillType>())
 	(L"move_to"sv, t_member<SkPathBuilder&(SkPathBuilder::*)(float, float), &SkPathBuilder::moveTo>())
@@ -93,10 +93,10 @@ void t_type_of<t_path_builder>::f_define(t_library* a_library)
 t_pvalue t_type_of<t_path_builder>::f_do_construct(t_pvalue* a_stack, size_t a_n)
 {
 	return t_overload<
-		t_construct<>,
-		t_construct<SkPathFillType>,
-		t_construct<const SkPath&>,
-		t_construct<const SkPathBuilder&>
+		t_construct_with<t_object*(*)(t_type*), t_proxy::f_new<t_path_builder>>,
+		t_construct_with<t_object*(*)(t_type*, SkPathFillType&&), t_proxy::f_new<t_path_builder>>,
+		t_construct_with<t_object*(*)(t_type*, const SkPath&), t_proxy::f_new<t_path_builder>>,
+		t_construct_with<t_object*(*)(t_type*, const SkPathBuilder&), t_proxy::f_new<t_path_builder>>
 	>::t_bind<t_path_builder>::f_do(this, a_stack, a_n);
 }
 

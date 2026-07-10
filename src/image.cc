@@ -134,7 +134,7 @@ void t_type_of<xemmaix::skia::t_image>::f_define(t_library* a_library)
 		if (!codec) f_throw(std::format(L"SkCodec::MakeFromStream: {}"sv, static_cast<int>(result0)));
 		auto [image, result1] = codec->getImage();
 		if (!image) f_throw(std::format(L"SkCodec::getImage: {}"sv, static_cast<int>(result1)));
-		return xemmai::f_new<xemmaix::skia::t_image>(a_library, image);
+		return t_proxy::f_own(xemmai::f_new<xemmaix::skia::t_image>(a_library, image));
 	}>())
 	(L"width"sv, t_member<int(*)(const sk_sp<SkImage>&), [](auto a_this)
 	{

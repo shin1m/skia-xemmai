@@ -14,13 +14,14 @@
 namespace xemmai
 {
 
-void t_type_of<xemmaix::skia::t_surface>::f_define(t_library* a_library)
+using namespace xemmaix::skia;
+
+void t_type_of<t_surface>::f_define(t_library* a_library)
 {
-	using namespace xemmaix::skia;
 	t_define{a_library}
 	(L"raster"sv, t_static<t_object*(*)(t_library*, int, int), [](auto a_library, auto a_width, auto a_height)
 	{
-		if (auto p = SkSurfaces::Raster(SkImageInfo::MakeN32Premul(a_width, a_height))) return xemmai::f_new<t_surface>(a_library, p);
+		if (auto p = SkSurfaces::Raster(SkImageInfo::MakeN32Premul(a_width, a_height))) return t_proxy::f_own(xemmai::f_new<t_surface>(a_library, p));
 		f_throw(L"SkSurfaces::Raster"sv);
 	}>())
 	(L"gl"sv, t_static<t_object*(*)(t_library*, const t_gl_context&, GLuint, int, int), [](auto a_library, auto a_context, auto a_framebuffer, auto a_width, auto a_height)
@@ -32,7 +33,7 @@ void t_type_of<xemmaix::skia::t_surface>::f_define(t_library* a_library)
 		if (!target.isValid()) f_throw(L"GrBackendRenderTargets::MakeGL"sv);
 		auto surface = SkSurfaces::WrapBackendRenderTarget(a_context.get(), target, kBottomLeft_GrSurfaceOrigin, kRGBA_8888_SkColorType, {}, nullptr);
 		if (!surface) f_throw(L"SkSurfaces::WrapBackendRenderTarget"sv);
-		return xemmai::f_new<t_surface>(a_library, surface);
+		return t_proxy::f_own(xemmai::f_new<t_surface>(a_library, surface));
 	}>())
 	(L"width"sv, t_member<int(*)(const sk_sp<SkSurface>&), [](auto a_this)
 	{
@@ -55,7 +56,7 @@ void t_type_of<xemmaix::skia::t_surface>::f_define(t_library* a_library)
 	}>())
 	(L"make_image_snapshot"sv, t_member<t_object*(*)(t_library*, const sk_sp<SkSurface>&), [](auto a_library, auto a_this)
 	{
-		if (auto p = a_this->makeImageSnapshot()) return xemmai::f_new<xemmaix::skia::t_image>(a_library, p);
+		if (auto p = a_this->makeImageSnapshot()) return t_proxy::f_own(xemmai::f_new<t_image>(a_library, p));
 		f_throw(L"SkSurface::makeImageSnapshot"sv);
 	}>())
 	(L"read_pixels"sv, t_member<t_object*(*)(const sk_sp<SkSurface>&, int, int, SkColorType, SkAlphaType, int, int), [](auto a_this, auto a_width, auto a_height, auto a_color_type, auto a_alpha_type, auto a_x, auto a_y)
@@ -102,9 +103,8 @@ void t_type_of<xemmaix::skia::t_surface>::f_define(t_library* a_library)
 	.f_derive<t_surface, t_proxy>();
 }
 
-void t_type_of<xemmaix::skia::t_gl_context>::f_define(t_library* a_library)
+void t_type_of<t_gl_context>::f_define(t_library* a_library)
 {
-	using namespace xemmaix::skia;
 	t_define{a_library}
 	(L"flush"sv, t_member<void(*)(const t_gl_context&, const sk_sp<SkSurface>&), [](auto a_this, auto a_surface)
 	{
@@ -113,7 +113,7 @@ void t_type_of<xemmaix::skia::t_gl_context>::f_define(t_library* a_library)
 	.f_derive<t_gl_context, t_proxy>();
 }
 
-t_pvalue t_type_of<xemmaix::skia::t_gl_context>::f_do_construct(t_pvalue* a_stack, size_t a_n)
+t_pvalue t_type_of<t_gl_context>::f_do_construct(t_pvalue* a_stack, size_t a_n)
 {
 	return t_construct_with<t_object*(*)(t_type*), [](auto a_class)
 	{
@@ -123,7 +123,7 @@ t_pvalue t_type_of<xemmaix::skia::t_gl_context>::f_do_construct(t_pvalue* a_stac
 		if (!interface) f_throw(L"GrGLMakeNativeInterface"sv);
 		auto context = GrDirectContexts::MakeGL(interface);
 		if (!context) f_throw(L"GrDirectContexts::MakeGL"sv);
-		return a_class->template f_new<xemmaix::skia::t_gl_context>(context);
+		return t_proxy::f_new<t_gl_context>(a_class, context);
 	}>::f_do(this, a_stack, a_n);
 }
 

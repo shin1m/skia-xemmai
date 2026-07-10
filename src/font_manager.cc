@@ -58,12 +58,12 @@ void t_type_of<xemmaix::skia::t_font_manager>::f_define(t_library* a_library)
 	t_define{a_library}
 	(L"make_default"sv, t_static<t_object*(*)(t_library*), [](auto a_library)
 	{
-		return xemmai::f_new<t_font_manager>(a_library, SkFontMgr_New_FontConfig(nullptr, SkFontScanner_Make_FreeType()));
+		return t_proxy::f_own(xemmai::f_new<t_font_manager>(a_library, SkFontMgr_New_FontConfig(nullptr, SkFontScanner_Make_FreeType())));
 	}>())
 	(L"match_family_style"sv, t_member<t_object*(*)(t_library*, const sk_sp<SkFontMgr>&, const t_string*, const SkFontStyle&), [](auto a_library, auto a_this, auto a_family, auto a_style)
 	{
 		auto typeface = a_this->matchFamilyStyle(a_family ? portable::f_convert(*a_family).c_str() : nullptr, a_style);
-		return typeface ? xemmai::f_new<t_typeface>(a_library, typeface) : nullptr;
+		return typeface ? t_proxy::f_own(xemmai::f_new<t_typeface>(a_library, typeface)) : nullptr;
 	}>())
 	.f_derive<t_font_manager, t_proxy>();
 }

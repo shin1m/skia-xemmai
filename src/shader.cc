@@ -75,22 +75,22 @@ void t_type_of<xemmaix::skia::t_shader>::f_define(t_library* a_library)
 	{
 		SkPoint points[] = {{a_x0, a_y0}, {a_x1, a_y1}};
 		auto [colors, positions] = f_colors_positions(a_colors);
-		return xemmai::f_new<t_shader>(a_library, SkShaders::LinearGradient(points, {{colors, positions, a_mode}, {}}));
+		return t_proxy::f_own(xemmai::f_new<t_shader>(a_library, SkShaders::LinearGradient(points, {{colors, positions, a_mode}, {}})));
 	}>())
 	(L"radial_gradient"sv, t_static<t_object*(*)(t_library*, float, float, float, const t_pvalue&, SkTileMode), [](auto a_library, auto a_x, auto a_y, auto a_radius, auto a_colors, auto a_mode)
 	{
 		auto [colors, positions] = f_colors_positions(a_colors);
-		return xemmai::f_new<t_shader>(a_library, SkShaders::RadialGradient({a_x, a_y}, a_radius, {{colors, positions, a_mode}, {}}));
+		return t_proxy::f_own(xemmai::f_new<t_shader>(a_library, SkShaders::RadialGradient({a_x, a_y}, a_radius, {{colors, positions, a_mode}, {}})));
 	}>())
 	(L"two_point_conical_gradient"sv, t_static<t_object*(*)(t_library*, float, float, float, float, float, float, const t_pvalue&, SkTileMode), [](auto a_library, auto a_x0, auto a_y0, auto a_radius0, auto a_x1, auto a_y1, auto a_radius1, auto a_colors, auto a_mode)
 	{
 		auto [colors, positions] = f_colors_positions(a_colors);
-		return xemmai::f_new<t_shader>(a_library, SkShaders::TwoPointConicalGradient({a_x0, a_y0}, a_radius0, {a_x1, a_y1}, a_radius1, {{colors, positions, a_mode}, {}}));
+		return t_proxy::f_own(xemmai::f_new<t_shader>(a_library, SkShaders::TwoPointConicalGradient({a_x0, a_y0}, a_radius0, {a_x1, a_y1}, a_radius1, {{colors, positions, a_mode}, {}})));
 	}>())
 	(L"sweep_gradient"sv, t_static<t_object*(*)(t_library*, float, float, float, float, const t_pvalue&, SkTileMode), [](auto a_library, auto a_x, auto a_y, auto a_angle0, auto a_angle1, auto a_colors, auto a_mode)
 	{
 		auto [colors, positions] = f_colors_positions(a_colors);
-		return xemmai::f_new<t_shader>(a_library, SkShaders::SweepGradient({a_x, a_y}, a_angle0, a_angle1, {{colors, positions, a_mode}, {}}));
+		return t_proxy::f_own(xemmai::f_new<t_shader>(a_library, SkShaders::SweepGradient({a_x, a_y}, a_angle0, a_angle1, {{colors, positions, a_mode}, {}})));
 	}>())
 	.f_derive<t_shader, t_proxy>();
 }
