@@ -24,7 +24,7 @@ void f_extract(const t_pvalue& a_xs, auto a_do)
 {
 	auto list = [&](auto& xs)
 	{
-		a_do(xs.f_size(), [&](size_t i)
+		a_do(xs.f_size(), [&](auto i)
 		{
 			return t_pvalue(xs[i]);
 		});
@@ -37,7 +37,7 @@ void f_extract(const t_pvalue& a_xs, auto a_do)
 		static size_t index;
 		auto size = a_xs.f_invoke(f_global()->f_symbol_size(), index);
 		f_check<size_t>(size, L"size");
-		a_do(f_as<size_t>(size), [&](size_t i)
+		a_do(f_as<size_t>(size), [&](auto i)
 		{
 			return a_xs.f_get_at(i);
 		});
@@ -48,9 +48,9 @@ std::pair<std::vector<SkColor4f>, std::vector<float>> f_colors_positions(const t
 {
 	std::vector<SkColor4f> colors;
 	std::vector<float> positions;
-	f_extract(a_colors, [&](size_t n, auto get)
+	f_extract(a_colors, [&](auto n, auto get)
 	{
-		for (size_t i = 0; i < n; ++i) f_extract(get(i), [&](size_t n, auto get)
+		for (size_t i = 0; i < n; ++i) f_extract(get(i), [&](auto n, auto get)
 		{
 			if (n != 2) f_throw(L"must be pair");
 			auto x = get(0);
